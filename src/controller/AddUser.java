@@ -51,7 +51,7 @@ public class AddUser extends JFrame implements ActionListener {
 
     String [] items = {"学生","教师","系统管理员"};
 		submit = new JButton("提交");
-		chooice = new JComboBox(items);
+		chooice = new JComboBox<String>(items);
 
 		idt = new JTextField();
 		namet = new JTextField();
