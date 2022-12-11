@@ -19,7 +19,7 @@ import controller.CheckInfo;
 
 public class MainFrame extends JFrame implements ActionListener {
 	/**
-	 * µÇÂ½Ö÷½çÃæ
+	 * ç™»é™†ä¸»ç•Œé¢
 	 */
 	private static final long serialVersionUID = 1L;
 	JTextField idTextField;
@@ -32,21 +32,21 @@ public class MainFrame extends JFrame implements ActionListener {
 	int count = 0;
 
 	public MainFrame() {
-		super("ÕËºÅµÇÂ½");
+		super("è´¦å·ç™»é™†");
 		setLocation(300, 200);
 		setSize(300, 340);
 		contain = new JPanel();
 		contain.setLayout(null);
-		idLabel = new JLabel("IDºÅ");
-		passwdLabel = new JLabel("ÃÜÂë");
+		idLabel = new JLabel("IDå·");
+		passwdLabel = new JLabel("å¯†ç ");
 		idTextField = new JTextField();
 		passwdTextField = new JPasswordField();
-		logon = new JButton("µÇÂ½");
+		logon = new JButton("ç™»é™†");
 		chooice = new Choice();
-		chooice.addItem("Ñ§Éú");
-		chooice.addItem("½ÌÊ¦");
-		// chooice.addItem("½ÌÎñÔ±");
-		chooice.addItem("ÏµÍ³¹ÜÀíÔ±");
+		chooice.addItem("å­¦ç”Ÿ");
+		chooice.addItem("æ•™å¸ˆ");
+		// chooice.addItem("æ•™åŠ¡å‘˜");
+		chooice.addItem("ç³»ç»Ÿç®¡ç†å‘˜");
 		idLabel.setBounds(42, 45, 75, 35);
 		idTextField.setBounds(80, 45, 150, 35);
 		passwdLabel.setBounds(40, 100, 75, 35);
@@ -68,7 +68,7 @@ public class MainFrame extends JFrame implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource() == logon) {
 			String ch = (String) chooice.getSelectedItem();
-			if (ch == "Ñ§Éú") {
+			if (ch == "å­¦ç”Ÿ") {
 				if ((new CheckInfo().isMember("student", idTextField.getText(),
 						new String(passwdTextField.getPassword()))) == 1) {
 					setVisible(false);
@@ -76,18 +76,18 @@ public class MainFrame extends JFrame implements ActionListener {
 				} else {
 					count += 1;
 					if (count <= 5) {
-						JOptionPane.showMessageDialog(null, "ÎŞ´ËÓÃ»§£¬»òÕßÃÜÂëÊäÈë´íÎó£¡",
-								"´íÎó", JOptionPane.INFORMATION_MESSAGE);
+						JOptionPane.showMessageDialog(null, "æ— æ­¤ç”¨æˆ·ï¼Œæˆ–è€…å¯†ç è¾“å…¥é”™è¯¯ï¼",
+								"é”™è¯¯", JOptionPane.INFORMATION_MESSAGE);
 					}
 					if (count > 5) {
-						JOptionPane.showMessageDialog(null, "´íÎó´ÎÊı³¬¹ı5´Î£¡",
-								"´íÎó", JOptionPane.INFORMATION_MESSAGE);
+						JOptionPane.showMessageDialog(null, "é”™è¯¯æ¬¡æ•°è¶…è¿‡5æ¬¡ï¼",
+								"é”™è¯¯", JOptionPane.INFORMATION_MESSAGE);
 						this.dispose();
 						setVisible(false);
 						System.exit(0);
 					}
 				}
-			} else if (ch == "½ÌÊ¦") {
+			} else if (ch == "æ•™å¸ˆ") {
 				if ((new CheckInfo().isMember("teacher", idTextField.getText(),
 						new String(passwdTextField.getPassword(), 0,
 								passwdTextField.getPassword().length))) == 1) {
@@ -96,18 +96,18 @@ public class MainFrame extends JFrame implements ActionListener {
 				} else {
 					count += 1;
 					if (count <= 5) {
-						JOptionPane.showMessageDialog(null, "ÎŞ´ËÓÃ»§£¬»òÕßÃÜÂëÊäÈë´íÎó£¡",
-								"´íÎó", JOptionPane.INFORMATION_MESSAGE);
+						JOptionPane.showMessageDialog(null, "æ— æ­¤ç”¨æˆ·ï¼Œæˆ–è€…å¯†ç è¾“å…¥é”™è¯¯ï¼",
+								"é”™è¯¯", JOptionPane.INFORMATION_MESSAGE);
 					}
 					if (count > 5) {
-						JOptionPane.showMessageDialog(null, "´íÎó´ÎÊı³¬¹ı5´Î£¡",
-								"´íÎó", JOptionPane.INFORMATION_MESSAGE);
+						JOptionPane.showMessageDialog(null, "é”™è¯¯æ¬¡æ•°è¶…è¿‡5æ¬¡ï¼",
+								"é”™è¯¯", JOptionPane.INFORMATION_MESSAGE);
 						this.dispose();
 						setVisible(false);
 						System.exit(0);
 					}
 				}
-			} else if (ch == "ÏµÍ³¹ÜÀíÔ±") {
+			} else if (ch == "ç³»ç»Ÿç®¡ç†å‘˜") {
 				if ((new CheckInfo().isMember("administrator", idTextField
 						.getText(), new String(passwdTextField.getPassword(),
 						0, passwdTextField.getPassword().length))) == 1) {
@@ -116,12 +116,12 @@ public class MainFrame extends JFrame implements ActionListener {
 				} else {
 					count += 1;
 					if (count <= 5) {
-						JOptionPane.showMessageDialog(null, "ÎŞ´ËÓÃ»§£¬»òÕßÃÜÂëÊäÈë´íÎó£¡",
-								"´íÎó", JOptionPane.INFORMATION_MESSAGE);
+						JOptionPane.showMessageDialog(null, "æ— æ­¤ç”¨æˆ·ï¼Œæˆ–è€…å¯†ç è¾“å…¥é”™è¯¯ï¼",
+								"é”™è¯¯", JOptionPane.INFORMATION_MESSAGE);
 					}
 					if (count > 5) {
-						JOptionPane.showMessageDialog(null, "´íÎó´ÎÊı³¬¹ı5´Î£¡",
-								"´íÎó", JOptionPane.INFORMATION_MESSAGE);
+						JOptionPane.showMessageDialog(null, "é”™è¯¯æ¬¡æ•°è¶…è¿‡5æ¬¡ï¼",
+								"é”™è¯¯", JOptionPane.INFORMATION_MESSAGE);
 						this.dispose();
 						setVisible(false);
 						System.exit(0);

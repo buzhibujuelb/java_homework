@@ -5,7 +5,7 @@ import java.io.FileReader;
 
 public class CheckInfo {
 	/*
-	 * µÇÂ½Ê±¼ì²éÓÃ»§ĞÅÏ¢
+	 * ç™»é™†æ—¶æ£€æŸ¥ç”¨æˆ·ä¿¡æ¯
 	 */
 
 	public int isMember(String table, String id, String passwd) {
@@ -14,9 +14,9 @@ public class CheckInfo {
 		String file = System.getProperty("user.dir")+"/data".concat("/").concat(table).concat(".txt");
 		 //StringBuilder result = new StringBuilder();
 	        try{
-	            BufferedReader br = new BufferedReader(new FileReader(file));//¹¹ÔìÒ»¸öBufferedReaderÀàÀ´¶ÁÈ¡ÎÄ¼ş
+	            BufferedReader br = new BufferedReader(new FileReader(file));//æ„é€ ä¸€ä¸ªBufferedReaderç±»æ¥è¯»å–æ–‡ä»¶
 	            String s = null;
-	            while((s = br.readLine())!=null){//Ê¹ÓÃreadLine·½·¨£¬Ò»´Î¶ÁÒ»ĞĞ
+	            while((s = br.readLine())!=null){//ä½¿ç”¨readLineæ–¹æ³•ï¼Œä¸€æ¬¡è¯»ä¸€è¡Œ
 	            	String[] result = s.split(" ");
 	            	if(result[0].equals(id) && result[1].equals(passwd)){
 	            		return 1;

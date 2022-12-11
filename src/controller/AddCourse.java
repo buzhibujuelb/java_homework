@@ -24,7 +24,7 @@ import model.Course;
 @SuppressWarnings("serial")
 public class AddCourse extends JFrame implements ActionListener {
 	/*
-	 * ½ÌÊ¦Ôö¼Ó¿Î³Ì
+	 * æ•™å¸ˆå¢åŠ è¯¾ç¨‹
 	 */
 
 	JPanel contain;
@@ -33,20 +33,20 @@ public class AddCourse extends JFrame implements ActionListener {
 	JTextField idt, namet, greditt, classHt, teacherIdt, teacherNamet;
 
 	public AddCourse() {
-		super("Ôö¼Ó¿Î³Ì");
+		super("å¢åŠ è¯¾ç¨‹");
 		setSize(400, 400);
 		setLocation(600, 400);
 		contain = new JPanel();
 		contain.setLayout(null);
-		id = new JLabel("¿Î³ÌºÅ");
-		name = new JLabel("¿Î³ÌÃû");
-		gredit = new JLabel("Ñ§·Ö");
-		classH = new JLabel("Ñ§Ê±");
+		id = new JLabel("è¯¾ç¨‹å·");
+		name = new JLabel("è¯¾ç¨‹å");
+		gredit = new JLabel("å­¦åˆ†");
+		classH = new JLabel("å­¦æ—¶");
 
-		teacherId = new JLabel("½ÌÊ¦");
-		teacherName = new JLabel("½ÌÊ¦ºÅ");
+		teacherId = new JLabel("æ•™å¸ˆ");
+		teacherName = new JLabel("æ•™å¸ˆå·");
 
-		submit = new JButton("Ìá½»");
+		submit = new JButton("æäº¤");
 		idt = new JTextField();
 		namet = new JTextField();
 		greditt = new JTextField();
@@ -89,13 +89,13 @@ public class AddCourse extends JFrame implements ActionListener {
 		enableEvents(AWTEvent.WINDOW_EVENT_MASK);
 	}
 
-	public int hasCourse(String id) { // ½ÌÊ¦¿ª¿ÎÇ°¼ì²é¿Î³ÌÊÇ·ñÒÑ¾­´æÔÚ
+	public int hasCourse(String id) { // æ•™å¸ˆå¼€è¯¾å‰æ£€æŸ¥è¯¾ç¨‹æ˜¯å¦å·²ç»å­˜åœ¨
 
 		String file = System.getProperty("user.dir") + "/data/course.txt";
 		try {
-			BufferedReader br = new BufferedReader(new FileReader(file)); // ¹¹ÔìÒ»¸öBufferedReaderÀàÀ´¶ÁÈ¡ÎÄ¼ş
+			BufferedReader br = new BufferedReader(new FileReader(file)); // æ„é€ ä¸€ä¸ªBufferedReaderç±»æ¥è¯»å–æ–‡ä»¶
 			String s = null;
-			while ((s = br.readLine()) != null) {// Ê¹ÓÃreadLine·½·¨£¬Ò»´Î¶ÁÒ»ĞĞ
+			while ((s = br.readLine()) != null) {// ä½¿ç”¨readLineæ–¹æ³•ï¼Œä¸€æ¬¡è¯»ä¸€è¡Œ
 				String[] result = s.split(" ");
 				if (result[0].equals(id)) {
 					return 1;
@@ -115,10 +115,10 @@ public class AddCourse extends JFrame implements ActionListener {
 			if ((idt.getText().equals("")) || (namet.getText().equals("")) || (greditt.getText().equals(""))
 					|| (classHt.getText().equals("")) || teacherIdt.getText().equals("")
 					|| teacherNamet.getText().equals("")) {
-				JOptionPane.showMessageDialog(null, "ĞÅÏ¢²»ÄÜÎª¿Õ£¡", "ÌáÊ¾", JOptionPane.INFORMATION_MESSAGE);
+				JOptionPane.showMessageDialog(null, "ä¿¡æ¯ä¸èƒ½ä¸ºç©ºï¼", "æç¤º", JOptionPane.INFORMATION_MESSAGE);
 			} else {
 				if ((hasCourse(idt.getText())) == 1) {
-					JOptionPane.showMessageDialog(null, "´Ë¿Î³ÌÒÑ¾­´æÔÚ£¡", "ÌáÊ¾", JOptionPane.INFORMATION_MESSAGE);
+					JOptionPane.showMessageDialog(null, "æ­¤è¯¾ç¨‹å·²ç»å­˜åœ¨ï¼", "æç¤º", JOptionPane.INFORMATION_MESSAGE);
 				} else {
 
 					String file = System.getProperty("user.dir") + "/data/course.txt";
@@ -128,7 +128,7 @@ public class AddCourse extends JFrame implements ActionListener {
 					try {
 						BufferedReader br = new BufferedReader(new FileReader(file));
 						String s = null;
-						while ((s = br.readLine()) != null) { // ÏÈ½«Ô­À´´æÔÚµÄĞÅÏ¢´æ´¢ÆğÀ´
+						while ((s = br.readLine()) != null) { // å…ˆå°†åŸæ¥å­˜åœ¨çš„ä¿¡æ¯å­˜å‚¨èµ·æ¥
 							String[] result = s.split(" ");
 
 							String s1 = "";
@@ -168,13 +168,13 @@ public class AddCourse extends JFrame implements ActionListener {
 						e1.printStackTrace();
 					}
 
-					// ³ıÁËÌí¼Ó¶ÔÓ¦¿Î³ÌÎÄ¼şÍâ£¬»¹ĞèÒªÌí¼Ó¿Î³Ì³É¼¨ÎÄ¼şÒÔ¼°¿Î³ÌÑ§ÉúÎÄ¼ş
+					// é™¤äº†æ·»åŠ å¯¹åº”è¯¾ç¨‹æ–‡ä»¶å¤–ï¼Œè¿˜éœ€è¦æ·»åŠ è¯¾ç¨‹æˆç»©æ–‡ä»¶ä»¥åŠè¯¾ç¨‹å­¦ç”Ÿæ–‡ä»¶
 					File gradeFile = new File(
 							System.getProperty("user.dir") + "/data/grade" + course.getCourseName() + ".txt");
 					File studentFile = new File(System.getProperty("user.dir") + "/data/course_student"
 							+ course.getCourseName() + "_student.txt");
 
-					JOptionPane.showMessageDialog(null, "Ìí¼Ó³É¹¦", "ÌáÊ¾", JOptionPane.INFORMATION_MESSAGE);
+					JOptionPane.showMessageDialog(null, "æ·»åŠ æˆåŠŸ", "æç¤º", JOptionPane.INFORMATION_MESSAGE);
 				}
 			}
 		}

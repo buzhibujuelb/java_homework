@@ -23,9 +23,9 @@ import javax.swing.JTextField;
 @SuppressWarnings("serial")
 public class GradeEnter extends JFrame implements ActionListener {
 	/*
-	 * ½ÌÊ¦µÇÂ½¿Î³ÌĞÅÏ¢
+	 * æ•™å¸ˆç™»é™†è¯¾ç¨‹ä¿¡æ¯
 	 */
-	String idd;  // ½ÌÊ¦ºÅ
+	String idd;  // æ•™å¸ˆå·
 	JPanel contain;
 	JLabel id;
 	JTextField idt, stuIdt, stuGradet, stuNamet;
@@ -36,16 +36,16 @@ public class GradeEnter extends JFrame implements ActionListener {
 	ArrayList<String> modifiedContent = new ArrayList<String>();
 
 	public GradeEnter(String idd) {
-		super("²é¿´");
+		super("æŸ¥çœ‹");
 		this.idd = idd;
 		setSize(300, 340);
 		setLocation(600, 400);
 		contain = new JPanel();
 		contain.setLayout(null);
 		add(contain);
-		id = new JLabel("¿Î³ÌºÅ");
+		id = new JLabel("è¯¾ç¨‹å·");
 		idt = new JTextField();
-		submit = new JButton("Ìá½»");
+		submit = new JButton("æäº¤");
 		id.setBounds(38, 50, 75, 35);
 		idt.setBounds(80, 50, 150, 35);
 		submit.setBounds(102, 125, 70, 30);
@@ -60,46 +60,46 @@ public class GradeEnter extends JFrame implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource() == submit) {
 			if (hasThisCourse(idt.getText()) == 1) {
-				enter();   // ½øÈë³É¼¨ÊäÈë½çÃæ
+				enter();   // è¿›å…¥æˆç»©è¾“å…¥ç•Œé¢
 				
 			} else {
-				JOptionPane.showMessageDialog(null, "ÄúÎ´¿ªÉè´Ë¿Î³Ì£¡", "ÌáÊ¾", JOptionPane.INFORMATION_MESSAGE);
+				JOptionPane.showMessageDialog(null, "æ‚¨æœªå¼€è®¾æ­¤è¯¾ç¨‹ï¼", "æç¤º", JOptionPane.INFORMATION_MESSAGE);
 			}
 		} else if (e.getSource() == bn) {
 			
-			if (hasThisStu() == 1) {   // µÇÂ½³É¼¨
+			if (hasThisStu() == 1) {   // ç™»é™†æˆç»©
 				
 				String path = System.getProperty("user.dir")+"/data/grade";
 				// String path = "D://test//grade";
 
 				
-				// ÕÒ¶ÔÓ¦¿Î³Ì³É¼¨ÎÄ¼ş
-				List<String> files = new ArrayList<String>(); // ¿Î³Ì³É¼¨Ä¿Â¼ÏÂËùÓĞ¿ÆÄ¿³É¼¨ÎÄ¼ş
+				// æ‰¾å¯¹åº”è¯¾ç¨‹æˆç»©æ–‡ä»¶
+				List<String> files = new ArrayList<String>(); // è¯¾ç¨‹æˆç»©ç›®å½•ä¸‹æ‰€æœ‰ç§‘ç›®æˆç»©æ–‡ä»¶
 				File file = new File(path);
 				File[] tempList = file.listFiles();
 
 				for (int i = 0; i < tempList.length; i++) {
 					if (tempList[i].isFile()) {
 						files.add(tempList[i].toString());
-						// ÎÄ¼şÃû£¬²»°üº¬Â·¾¶
+						// æ–‡ä»¶åï¼Œä¸åŒ…å«è·¯å¾„
 						// String fileName = tempList[i].getName();
 					}
 					if (tempList[i].isDirectory()) {
-						// ÕâÀï¾Í²»µİ¹éÁË£¬
+						// è¿™é‡Œå°±ä¸é€’å½’äº†ï¼Œ
 					}
 				}
 
 				try {
-					for (int i = 0; i < files.size(); i++) {  // ±éÀúËùÓĞÎÄ¼ş
+					for (int i = 0; i < files.size(); i++) {  // éå†æ‰€æœ‰æ–‡ä»¶
 						BufferedReader br = new BufferedReader(new FileReader(files.get(i)));
 						String s = null;
 						String[] result = null;
-						while ((s = br.readLine()) != null) {// Ê¹ÓÃreadLine·½·¨£¬¶ÔÒ»¸öÎÄ¼şÒ»´Î¶ÁÒ»ĞĞ
+						while ((s = br.readLine()) != null) {// ä½¿ç”¨readLineæ–¹æ³•ï¼Œå¯¹ä¸€ä¸ªæ–‡ä»¶ä¸€æ¬¡è¯»ä¸€è¡Œ
 							result = s.split(" ");
-							if (result[0].equals(idt.getText())){  // ¿ªÊ¼¸ÄĞ´³É¼¨ÎÄ¼ş
+							if (result[0].equals(idt.getText())){  // å¼€å§‹æ”¹å†™æˆç»©æ–‡ä»¶
 								targetFile = files.get(i);
 								
-								// ½«Ô­À´µÄÄÚÈİÏÈ¸´ÖÆ
+								// å°†åŸæ¥çš„å†…å®¹å…ˆå¤åˆ¶
 								String s1 = "";
 								for (int j = 0; j < result.length - 1; j++) {
 									s1 = s1 + result[j];
@@ -110,7 +110,7 @@ public class GradeEnter extends JFrame implements ActionListener {
 								modifiedContent.add(s1);
 							
 							}
-						} // ¶ÁÍêÒ»¸ö³É¼¨ÎÄ¼ş
+						} // è¯»å®Œä¸€ä¸ªæˆç»©æ–‡ä»¶
 						
 						if (result[0].equals(idt.getText())){
 							String gradeInfo = idt.getText();
@@ -155,10 +155,10 @@ public class GradeEnter extends JFrame implements ActionListener {
 				}
 				
 				
-				JOptionPane.showMessageDialog(null, "³É¼¨µÇÂ¼³É¹¦£¡", "ÌáÊ¾", JOptionPane.INFORMATION_MESSAGE);
+				JOptionPane.showMessageDialog(null, "æˆç»©ç™»å½•æˆåŠŸï¼", "æç¤º", JOptionPane.INFORMATION_MESSAGE);
 			
 			} else {
-				JOptionPane.showMessageDialog(null, "¿Î³ÌºÅÎª" + idt.getText() + "ÎŞ´ËÑ§Éú", "ÌáÊ¾",
+				JOptionPane.showMessageDialog(null, "è¯¾ç¨‹å·ä¸º" + idt.getText() + "æ— æ­¤å­¦ç”Ÿ", "æç¤º",
 						JOptionPane.INFORMATION_MESSAGE);
 			}
 		}
@@ -172,18 +172,18 @@ public class GradeEnter extends JFrame implements ActionListener {
 		String path = System.getProperty("user.dir")+"/data/course_student";
 		// String path = "D://test//course_student";
 
-		List<String> files = new ArrayList<String>(); // Ä¿Â¼ÏÂËùÓĞÎÄ¼ş
+		List<String> files = new ArrayList<String>(); // ç›®å½•ä¸‹æ‰€æœ‰æ–‡ä»¶
 		File file = new File(path);
 		File[] tempList = file.listFiles();
 
 		for (int i = 0; i < tempList.length; i++) {
 			if (tempList[i].isFile()) {
 				files.add(tempList[i].toString());
-				// ÎÄ¼şÃû£¬²»°üº¬Â·¾¶
+				// æ–‡ä»¶åï¼Œä¸åŒ…å«è·¯å¾„
 				// String fileName = tempList[i].getName();
 			}
 			if (tempList[i].isDirectory()) {
-				// ÕâÀï¾Í²»µİ¹éÁË£¬
+				// è¿™é‡Œå°±ä¸é€’å½’äº†ï¼Œ
 			}
 		}
 
@@ -192,7 +192,7 @@ public class GradeEnter extends JFrame implements ActionListener {
 				BufferedReader br = new BufferedReader(new FileReader(
 						files.get(i)));
 				String s = null;
-				while ((s = br.readLine()) != null) {// Ê¹ÓÃreadLine·½·¨£¬Ò»´Î¶ÁÒ»ĞĞ
+				while ((s = br.readLine()) != null) {// ä½¿ç”¨readLineæ–¹æ³•ï¼Œä¸€æ¬¡è¯»ä¸€è¡Œ
 					String[] result = s.split(" ");
 					if (result[0].equals(idt.getText()) && result[2].equals(stuIdt.getText())){
 						return 1;
@@ -208,15 +208,15 @@ public class GradeEnter extends JFrame implements ActionListener {
 	}
 
 	void enter() {
-		JFrame fm = new JFrame("µÇÂ¼³É¼¨");
+		JFrame fm = new JFrame("ç™»å½•æˆç»©");
 		fm.setSize(300, 340);
 		JPanel contain = new JPanel();
 		fm.setLocation(600, 400);
 		contain.setLayout(null);
-		bn = new JButton("Ìá½»");
-		JLabel stuId = new JLabel("Ñ§ºÅ");
-		JLabel stuGrade = new JLabel("³É¼¨");
-		JLabel stuName = new JLabel("ĞÕÃû");
+		bn = new JButton("æäº¤");
+		JLabel stuId = new JLabel("å­¦å·");
+		JLabel stuGrade = new JLabel("æˆç»©");
+		JLabel stuName = new JLabel("å§“å");
 		
 		stuIdt = new JTextField();
 		stuGradet = new JTextField();
@@ -254,7 +254,7 @@ public class GradeEnter extends JFrame implements ActionListener {
 		try{
             BufferedReader br = new BufferedReader(new FileReader(file));
             String s = null;
-            while((s = br.readLine())!=null){//Ê¹ÓÃreadLine·½·¨£¬Ò»´Î¶ÁÒ»ĞĞ
+            while((s = br.readLine())!=null){//ä½¿ç”¨readLineæ–¹æ³•ï¼Œä¸€æ¬¡è¯»ä¸€è¡Œ
             	String[] result = s.split(" ");
             	if(result[0].equals(idd)){
             		return 1;

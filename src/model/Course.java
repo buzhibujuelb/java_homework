@@ -141,7 +141,7 @@ public class Course {
 		try {
 			BufferedReader br = new BufferedReader(new FileReader(file));
 			String s = null;
-			while ((s = br.readLine()) != null) {// Ê¹ÓÃreadLine·½·¨£¬Ò»´Î¶ÁÒ»ÐÐ
+			while ((s = br.readLine()) != null) {// ä½¿ç”¨readLineæ–¹æ³•ï¼Œä¸€æ¬¡è¯»ä¸€è¡Œ
 				String[] result = s.split(" ");
 				if (result[0].equals(this.courseId)) {
 					return 1;
@@ -160,14 +160,14 @@ public class Course {
 
 		String path = System.getProperty("user.dir") + "/data/grade";
 
-		List<String> files = new ArrayList<String>(); // Ä¿Â¼ÏÂËùÓÐÎÄ¼þ
+		List<String> files = new ArrayList<String>(); // ç›®å½•ä¸‹æ‰€æœ‰æ–‡ä»¶
 		File file = new File(path);
 		File[] tempList = file.listFiles();
 
 		for (int i = 0; i < tempList.length; i++) {
 			if (tempList[i].isFile()) {
 				files.add(tempList[i].toString());
-				// ÎÄ¼þÃû£¬²»°üº¬Â·¾¶
+				// æ–‡ä»¶åï¼Œä¸åŒ…å«è·¯å¾„
 				// String fileName = tempList[i].getName();
 			}
 			if (tempList[i].isDirectory()) {
@@ -220,7 +220,7 @@ public class Course {
 		return new int[] { failCount, passCount, goodCount, excellentCount };
 	}
 
-	public int isValidate() { // ÊäÈëµÄ³É¼¨±ê×¼ÊÇ·ñÊÇÔÚÕý³£ÄÚ[0, 100],ÒÔ¼°pass<good<excellent
+	public int isValidate() { // è¾“å…¥çš„æˆç»©æ ‡å‡†æ˜¯å¦æ˜¯åœ¨æ­£å¸¸å†…[0, 100],ä»¥åŠpass<good<excellent
 		if (this.pass < 0 || this.pass > 100 || this.good < 0 || this.good > 100 || this.excellent < 0
 				|| this.excellent > 100 || this.pass >= good || this.pass >= excellent || this.good >= excellent)
 			return 1;

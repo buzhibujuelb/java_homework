@@ -15,7 +15,7 @@ import model.Teacher;
 
 public class Info extends JFrame {
 	/**
-	 * ÓÃ»§²éÑ¯¸öÈËĞÅÏ¢
+	 * ç”¨æˆ·æŸ¥è¯¢ä¸ªäººä¿¡æ¯
 	 */
 	private static final long serialVersionUID = 1L;
 	JLabel idLabel, nameLabel, genderLabel, birLabel, insLabel, majorLabel;
@@ -26,7 +26,7 @@ public class Info extends JFrame {
 	Teacher t;
 
 	public Info(String id, int flag) {
-		super("ĞÅÏ¢");
+		super("ä¿¡æ¯");
 		this.id = id;
 		setSize(300, 340);
 		setLocation(600, 400);
@@ -44,10 +44,10 @@ public class Info extends JFrame {
 
 		// StringBuilder result = new StringBuilder();
 		try {
-			BufferedReader br = new BufferedReader(new FileReader(file));// ¹¹ÔìÒ»¸öBufferedReaderÀàÀ´¶ÁÈ¡ÎÄ¼ş
+			BufferedReader br = new BufferedReader(new FileReader(file));// æ„é€ ä¸€ä¸ªBufferedReaderç±»æ¥è¯»å–æ–‡ä»¶
 			String s = null;
 
-			while ((s = br.readLine()) != null) {// Ê¹ÓÃreadLine·½·¨£¬Ò»´Î¶ÁÒ»ĞĞ
+			while ((s = br.readLine()) != null) {// ä½¿ç”¨readLineæ–¹æ³•ï¼Œä¸€æ¬¡è¯»ä¸€è¡Œ
 
 				String[] result = s.split(" ");
 				if (result[0].equals(id)) {
@@ -61,20 +61,20 @@ public class Info extends JFrame {
 
 					if (flag == 1) {
 						stu = new Student(id, pwd, name, gender, birthday, institute, major);
-						idLabel = new JLabel("ÕËºÅ:" + stu.getId());
-						nameLabel = new JLabel("ĞÕÃû:" + stu.getName());
-						genderLabel = new JLabel("ĞÔ±ğ:" + stu.getSex());
-						birLabel = new JLabel("ÉúÈÕ:" + stu.getBirthday());
-						insLabel = new JLabel("Ñ§Ôº:" + stu.getInstitute());
-						majorLabel = new JLabel("Ïµ±ğ:" + stu.getMajor());
+						idLabel = new JLabel("è´¦å·:" + stu.getId());
+						nameLabel = new JLabel("å§“å:" + stu.getName());
+						genderLabel = new JLabel("æ€§åˆ«:" + stu.getSex());
+						birLabel = new JLabel("ç”Ÿæ—¥:" + stu.getBirthday());
+						insLabel = new JLabel("å­¦é™¢:" + stu.getInstitute());
+						majorLabel = new JLabel("ç³»åˆ«:" + stu.getMajor());
 					} else {
 						t = new Teacher(id, pwd, name, gender, birthday, institute, major);
-						idLabel = new JLabel("ÕËºÅ:" + t.getId());
-						nameLabel = new JLabel("ĞÕÃû:" + t.getName());
-						genderLabel = new JLabel("ĞÔ±ğ:" + t.getSex());
-						birLabel = new JLabel("ÉúÈÕ:" + t.getBirthday());
-						insLabel = new JLabel("Ñ§Ôº:" + t.getInstitute());
-						majorLabel = new JLabel("Ïµ±ğ:" + t.getMajor());
+						idLabel = new JLabel("è´¦å·:" + t.getId());
+						nameLabel = new JLabel("å§“å:" + t.getName());
+						genderLabel = new JLabel("æ€§åˆ«:" + t.getSex());
+						birLabel = new JLabel("ç”Ÿæ—¥:" + t.getBirthday());
+						insLabel = new JLabel("å­¦é™¢:" + t.getInstitute());
+						majorLabel = new JLabel("ç³»åˆ«:" + t.getMajor());
 					}
 
 				}

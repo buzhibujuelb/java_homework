@@ -4,11 +4,11 @@ import model.Course;
 
 public class GradeSort {
   /*
-   * 教师查询成绩统计结果
+   * 鏁欏笀鏌ヨ鎴愮哗缁熻缁撴灉
    */
 
   String courseId;
-  float pass, good, excellent; // 及格，优良，优秀
+  float pass, good, excellent; // 鍙婃牸锛屼紭鑹紝浼樼
   Course course;
 
   public GradeSort(String courseId, float pass, float good, float excellent) {
@@ -25,7 +25,7 @@ public class GradeSort {
     return this.course.sortGrade();
   }
 
-  public int isValidate() { // 输入的成绩标准是否是在正常内[0, 100],以及pass<good<excellent
+  public int isValidate() { // 杈撳叆鐨勬垚缁╂爣鍑嗘槸鍚︽槸鍦ㄦ甯稿唴[0, 100],浠ュ強pass<good<excellent
     return this.course.isValidate();
   }
 
