@@ -1,7 +1,6 @@
 package controller;
 
 import java.awt.AWTEvent;
-import java.awt.Choice;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowEvent;
@@ -12,6 +11,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 
+import javax.swing.JComboBox;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -27,25 +27,20 @@ public class DeleteUser extends JFrame implements ActionListener {
 	JPanel contain;
 	JLabel id;
 	JTextField idt;
-	Choice chooice;
+	JComboBox chooice;
 	JButton submit;
 
 	String file = System.getProperty("user.dir") + "/data/";
 	// String file = "D://test//";
 
+  String [] items = {"学生","教师","系统管理员","一键清空所有学生","一键清空所有教师","一键清空所有人员"};
 	public DeleteUser() {
 		super("删除用户");
 		setSize(300, 340);
 		setLocation(600, 400);
 		contain = new JPanel();
 		contain.setLayout(null);
-		chooice = new Choice();
-		chooice.addItem("学生");
-		chooice.addItem("教师");
-		chooice.addItem("系统管理员");
-		chooice.addItem("一键清空所有学生");
-		chooice.addItem("一键清空所有教师");
-		chooice.addItem("一键清空所有人员");
+		chooice = new JComboBox<String>(items);
 		id = new JLabel("帐号");
 		submit = new JButton("提交");
 		idt = new JTextField();

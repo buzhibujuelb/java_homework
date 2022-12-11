@@ -1,9 +1,6 @@
 package controller;
 
 import java.awt.AWTEvent;
-import java.awt.Checkbox;
-import java.awt.CheckboxGroup;
-import java.awt.Choice;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowEvent;
@@ -14,6 +11,8 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 
+import javax.swing.JCheckBox;
+import javax.swing.JComboBox;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -29,10 +28,9 @@ public class AddUser extends JFrame implements ActionListener {
 	JPanel contain;
 	JLabel id, name, birthday, institute, major;
 	JTextField idt, namet, birthdayt, institutet, majort;
-	Checkbox check1, check2;
-	CheckboxGroup group;
+	JCheckBox check1, check2;
 	JButton submit;
-	Choice chooice;
+	JComboBox chooice;
 
 	String file = System.getProperty("user.dir") + "/data/";
 	// String file = "D://test//";
@@ -45,18 +43,15 @@ public class AddUser extends JFrame implements ActionListener {
 		contain.setLayout(null);
 		id = new JLabel("帐号");
 		name = new JLabel("姓名");
-		group = new CheckboxGroup();
-		check1 = new Checkbox("男", group, true);
-		check2 = new Checkbox("女", group, false);
+		check1 = new JCheckBox("男", true);
+		check2 = new JCheckBox("女", false);
 		birthday = new JLabel("生日");
 		institute = new JLabel("学院");
 		major = new JLabel("专业");
 
+    String [] items = {"学生","教师","系统管理员"};
 		submit = new JButton("提交");
-		chooice = new Choice();
-		chooice.addItem("学生");
-		chooice.addItem("教师");
-		chooice.addItem("系统管理员");
+		chooice = new JComboBox(items);
 
 		idt = new JTextField();
 		namet = new JTextField();
@@ -65,24 +60,25 @@ public class AddUser extends JFrame implements ActionListener {
 		institutet = new JTextField();
 		majort = new JTextField();
 
-		id.setBounds(42, 45, 75, 35);
-		idt.setBounds(80, 45, 150, 35);
+		id.setBounds(42, 45, 75, 30);
+		idt.setBounds(80, 45, 150, 30);
 		// name.setBounds(40, 100, 75, 35);
 		// namet.setBounds(80, 100, 150, 35);
 
-		name.setBounds(42, 20, 75, 35);
-		namet.setBounds(80, 20, 150, 35);
-		check1.setBounds(80, 67, 80, 40);
-		check2.setBounds(160, 67, 80, 40);
-		birthday.setBounds(42, 100, 75, 35);
-		birthdayt.setBounds(80, 100, 150, 35);
-		institute.setBounds(40, 145, 75, 35);
-		institutet.setBounds(80, 145, 150, 35);
-		major.setBounds(40, 220, 75, 35);
-		majort.setBounds(80, 220, 150, 35);
+		name.setBounds(42, 20, 75, 30);
+		namet.setBounds(80, 20, 150, 30);
 
-		chooice.setBounds(80, 180, 150, 35);
-		submit.setBounds(102, 260, 70, 30);
+		check1.setBounds(80, 77, 80, 30);
+		check2.setBounds(160, 77, 80, 30);
+		birthday.setBounds(42, 110, 75, 30);
+		birthdayt.setBounds(80, 110, 150, 30);
+		institute.setBounds(40, 155, 75, 30);
+		institutet.setBounds(80, 155, 150, 30);
+		major.setBounds(40, 230, 75, 30);
+		majort.setBounds(80, 230, 150, 30);
+
+		chooice.setBounds(80, 190, 150, 30);
+		submit.setBounds(102, 270, 70, 30);
 		contain.add(id);
 		contain.add(idt);
 		contain.add(name);
@@ -100,6 +96,8 @@ public class AddUser extends JFrame implements ActionListener {
 		contain.add(chooice);
 		contain.add(submit);
 		submit.addActionListener(this);
+		check1.addActionListener(this);
+		check2.addActionListener(this);
 		add(contain);
 		setVisible(true);
 		enableEvents(AWTEvent.WINDOW_EVENT_MASK);
@@ -143,7 +141,7 @@ public class AddUser extends JFrame implements ActionListener {
 						}
 
 						String m;
-						if (check1.getState()) {
+						if (check1.isSelected()) {
 							m = "male";
 						} else {
 							m = "female";
@@ -203,7 +201,7 @@ public class AddUser extends JFrame implements ActionListener {
 						}
 
 						String m;
-						if (check1.getState()) {
+						if (check1.isSelected()) {
 							m = "male";
 						} else {
 							m = "female";
@@ -263,7 +261,7 @@ public class AddUser extends JFrame implements ActionListener {
 						}
 
 						String m;
-						if (check1.getState()) {
+						if (check1.isSelected()) {
 							m = "male";
 						} else {
 							m = "female";
@@ -294,7 +292,14 @@ public class AddUser extends JFrame implements ActionListener {
 					}
 				}
 			}
-		}
+		}else if (e.getSource() == check1) {
+      check1.setSelected(true);
+      check2.setSelected(false);
+    }else if (e.getSource() == check2) {
+      check1.setSelected(false);
+      check2.setSelected(true);
+    }
+
 	}
 
 	public void processWindowEvent(WindowEvent e) {
