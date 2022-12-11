@@ -19,6 +19,8 @@ public class Info extends JFrame {
 	 */
 	private static final long serialVersionUID = 1L;
 	JLabel idLabel, nameLabel, genderLabel, birLabel, insLabel, majorLabel;
+  JLabel idArea, nameArea, genderArea, birArea, insArea, majorArea;
+  
 	String id, name, pwd, gender, birthday, institute, major;
 	JPanel stuInfoJPanel;
 
@@ -31,8 +33,8 @@ public class Info extends JFrame {
 		setSize(300, 340);
 		setLocation(600, 400);
 		stuInfoJPanel = new JPanel();
-		stuInfoJPanel.setLayout(new GridLayout(20, 1));
-		add(stuInfoJPanel);
+		//stuInfoJPanel.setLayout(new GridLayout(20, 1));
+		stuInfoJPanel.setLayout(null);
 		String file = "";
 		if (flag == 1) {
 			// file = "D://test//student.txt";
@@ -61,20 +63,32 @@ public class Info extends JFrame {
 
 					if (flag == 1) {
 						stu = new Student(id, pwd, name, gender, birthday, institute, major);
-						idLabel = new JLabel("账号:" + stu.getId());
-						nameLabel = new JLabel("姓名:" + stu.getName());
-						genderLabel = new JLabel("性别:" + stu.getSex());
-						birLabel = new JLabel("生日:" + stu.getBirthday());
-						insLabel = new JLabel("学院:" + stu.getInstitute());
-						majorLabel = new JLabel("系别:" + stu.getMajor());
+						idLabel = new JLabel("账号:");
+            idArea = new JLabel(stu.getId());
+						nameLabel = new JLabel("姓名:");
+            nameArea = new JLabel(stu.getName());
+						genderLabel = new JLabel("性别:");
+            genderArea = new JLabel(stu.getSex());
+						birLabel = new JLabel("生日:");
+            birArea = new JLabel(stu.getBirthday());
+						insLabel = new JLabel("学院:" );
+            insArea = new JLabel(stu.getInstitute());
+						majorLabel = new JLabel("系别:");
+            majorArea = new JLabel(stu.getMajor());
 					} else {
 						t = new Teacher(id, pwd, name, gender, birthday, institute, major);
-						idLabel = new JLabel("账号:" + t.getId());
-						nameLabel = new JLabel("姓名:" + t.getName());
-						genderLabel = new JLabel("性别:" + t.getSex());
-						birLabel = new JLabel("生日:" + t.getBirthday());
-						insLabel = new JLabel("学院:" + t.getInstitute());
-						majorLabel = new JLabel("系别:" + t.getMajor());
+						idLabel = new JLabel("账号:" );
+            idArea = new JLabel(t.getId());
+						nameLabel = new JLabel("姓名:" );
+            nameArea = new JLabel( t.getName());
+						genderLabel = new JLabel("性别:" );
+            genderArea = new JLabel(t.getSex());
+						birLabel = new JLabel("生日:" );
+            birArea = new JLabel(t.getBirthday());
+						insLabel = new JLabel("学院:" );
+            insArea = new JLabel(t.getInstitute());
+						majorLabel = new JLabel("系别:" );
+            majorArea = new JLabel(t.getMajor());
 					}
 
 				}
@@ -86,12 +100,34 @@ public class Info extends JFrame {
 			e.printStackTrace();
 		}
 
+
+		idLabel.setBounds(42, 20, 75, 35);
+		idArea.setBounds(80, 20, 150, 35);
+		nameLabel.setBounds(42, 60, 75, 35);
+		nameArea.setBounds(80, 60, 150, 35);
+		genderLabel.setBounds(42, 100, 75, 35);
+		genderArea.setBounds(80, 100, 150, 35);
+		birLabel.setBounds(40, 145, 75, 35);
+		birArea.setBounds(80, 145, 150, 35);
+		insLabel.setBounds(40, 190, 75, 35);
+		insArea.setBounds(80, 190, 150, 35);
+		majorLabel.setBounds(36, 235, 75, 35);
+		majorArea.setBounds(80, 235, 150, 35);
+
+
 		stuInfoJPanel.add(idLabel);
+		stuInfoJPanel.add(idArea);
 		stuInfoJPanel.add(nameLabel);
+		stuInfoJPanel.add(nameArea);
 		stuInfoJPanel.add(genderLabel);
+		stuInfoJPanel.add(genderArea);
 		stuInfoJPanel.add(birLabel);
+		stuInfoJPanel.add(birArea);
 		stuInfoJPanel.add(insLabel);
+		stuInfoJPanel.add(insArea);
 		stuInfoJPanel.add(majorLabel);
+		stuInfoJPanel.add(majorArea);
+		add(stuInfoJPanel);
 		enableEvents(AWTEvent.WINDOW_EVENT_MASK);
 		setVisible(true);
 

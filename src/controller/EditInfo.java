@@ -1,7 +1,6 @@
 package controller;
 
 import java.awt.AWTEvent;
-import java.awt.Checkbox;
 import java.awt.CheckboxGroup;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -13,6 +12,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 
+import javax.swing.JCheckBox;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -31,8 +31,7 @@ public class EditInfo extends JFrame implements ActionListener {
 	JButton submit;
 	JLabel name, inst, birth, pass1, pass2, major;
 	JTextField namet, instt, birtht, pass1t, pass2t, majort;
-	Checkbox check1, check2;
-	CheckboxGroup group;
+	JCheckBox check1, check2;
 	int flag;
 
 	public EditInfo(String id, int flag) {
@@ -50,9 +49,8 @@ public class EditInfo extends JFrame implements ActionListener {
 		pass1 = new JLabel("新密码");
 		pass2 = new JLabel("确认密码");
 		submit = new JButton("提交");
-		group = new CheckboxGroup();
-		check1 = new Checkbox("男", group, true);
-		check2 = new Checkbox("女", group, false);
+		check1 = new JCheckBox("男", true);
+		check2 = new JCheckBox("女", false);
 		instt = new JTextField();
 		namet = new JTextField();
 		birtht = new JTextField();
@@ -90,6 +88,8 @@ public class EditInfo extends JFrame implements ActionListener {
 		contain.add(pass2t);
 		contain.add(submit);
 		submit.addActionListener(this);
+		check1.addActionListener(this);
+		check2.addActionListener(this);
 		add(contain);
 		setVisible(true);
 		enableEvents(AWTEvent.WINDOW_EVENT_MASK);
@@ -112,7 +112,7 @@ public class EditInfo extends JFrame implements ActionListener {
 							JOptionPane.INFORMATION_MESSAGE);
 				} else {
 					String m;
-					if (check1.getState()) {
+					if (check1.isSelected()) {
 						m = "male";
 					} else {
 						m = "female";
@@ -303,7 +303,13 @@ public class EditInfo extends JFrame implements ActionListener {
           this.dispose();
 				}
 			}
-		}
+		}else if (e.getSource() == check1) {
+      check1.setSelected(true);
+      check2.setSelected(false);
+    }else if (e.getSource() == check2) {
+      check1.setSelected(false);
+      check2.setSelected(true);
+    }
 	}
 
 	public void processWindowEvent(WindowEvent e) {

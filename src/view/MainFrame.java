@@ -1,7 +1,6 @@
 package view;
 
 import java.awt.AWTEvent;
-import java.awt.Choice;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowEvent;
@@ -13,6 +12,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
+import javax.swing.JComboBox;
 
 import controller.CheckInfo;
 
@@ -25,11 +25,12 @@ public class MainFrame extends JFrame implements ActionListener {
 	JTextField idTextField;
 	JPasswordField passwdTextField;
 	JLabel idLabel, passwdLabel;
-	Choice chooice;
+	JComboBox chooice;
 	JButton logon;
 	JPanel contain;
 	
 	int count = 0;
+  String [] items = { "学生", "教师", "系统管理员"};
 
 	public MainFrame() {
 		super("账号登陆");
@@ -42,11 +43,7 @@ public class MainFrame extends JFrame implements ActionListener {
 		idTextField = new JTextField();
 		passwdTextField = new JPasswordField();
 		logon = new JButton("登陆");
-		chooice = new Choice();
-		chooice.addItem("学生");
-		chooice.addItem("教师");
-		// chooice.addItem("教务员");
-		chooice.addItem("系统管理员");
+		chooice = new JComboBox<String>(items);
 		idLabel.setBounds(42, 45, 75, 35);
 		idTextField.setBounds(80, 45, 150, 35);
 		passwdLabel.setBounds(40, 100, 75, 35);
