@@ -11,9 +11,7 @@ public class CheckInfo {
 
   public int isMember(String table, String id, String passwd) {
 
-    // String file = "D://test//".concat(table.concat(".txt"));
     String file = System.getProperty("user.dir")+"/data".concat("/").concat(table).concat(".txt");
-    //StringBuilder result = new StringBuilder();
     try{
       BufferedReader br = new BufferedReader(new FileReader(file));//构造一个BufferedReader类来读取文件
       String s = null;
