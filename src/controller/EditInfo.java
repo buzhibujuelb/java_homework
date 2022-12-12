@@ -11,7 +11,8 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 
-import javax.swing.JCheckBox;
+import javax.swing.ButtonGroup;
+import javax.swing.JRadioButton;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -30,7 +31,7 @@ public class EditInfo extends JFrame implements ActionListener {
 	JButton submit;
 	JLabel name, inst, birth, pass1, pass2, major;
 	JTextField namet, instt, birtht, pass1t, pass2t, majort;
-	JCheckBox check1, check2;
+	JRadioButton check1, check2;
 	int flag;
 
 	public EditInfo(String id, int flag) {
@@ -48,8 +49,11 @@ public class EditInfo extends JFrame implements ActionListener {
 		pass1 = new JLabel("新密码");
 		pass2 = new JLabel("确认密码");
 		submit = new JButton("提交");
-		check1 = new JCheckBox("男", true);
-		check2 = new JCheckBox("女", false);
+		check1 = new JRadioButton("男", true);
+		check2 = new JRadioButton("女", false);
+    ButtonGroup bg = new ButtonGroup();
+    bg.add(check1);
+    bg.add(check2);
 		instt = new JTextField();
 		namet = new JTextField();
 		birtht = new JTextField();
@@ -87,8 +91,6 @@ public class EditInfo extends JFrame implements ActionListener {
 		contain.add(pass2t);
 		contain.add(submit);
 		submit.addActionListener(this);
-		check1.addActionListener(this);
-		check2.addActionListener(this);
 		add(contain);
 		setVisible(true);
 		enableEvents(AWTEvent.WINDOW_EVENT_MASK);
@@ -302,14 +304,8 @@ public class EditInfo extends JFrame implements ActionListener {
           this.dispose();
 				}
 			}
-		}else if (e.getSource() == check1) {
-      check1.setSelected(true);
-      check2.setSelected(false);
-    }else if (e.getSource() == check2) {
-      check1.setSelected(false);
-      check2.setSelected(true);
-    }
-	}
+		}
+  }
 
 	public void processWindowEvent(WindowEvent e) {
 		if (e.getID() == WindowEvent.WINDOW_CLOSING) {

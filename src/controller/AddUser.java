@@ -11,7 +11,8 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 
-import javax.swing.JCheckBox;
+import javax.swing.ButtonGroup;
+import javax.swing.JRadioButton;
 import javax.swing.JComboBox;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -28,11 +29,12 @@ public class AddUser extends JFrame implements ActionListener {
 	JPanel contain;
 	JLabel id, name, birthday, institute, major;
 	JTextField idt, namet, birthdayt, institutet, majort;
-	JCheckBox check1, check2;
+	JRadioButton check1, check2;
 	JButton submit;
 	JComboBox chooice;
 
-	String file = System.getProperty("user.dir") + "/data/";
+	String dir = System.getProperty("user.dir") + "/data/";
+  String file ;
 	// String file = "D://test//";
 
 	public AddUser() {
@@ -43,8 +45,11 @@ public class AddUser extends JFrame implements ActionListener {
 		contain.setLayout(null);
 		id = new JLabel("帐号");
 		name = new JLabel("姓名");
-		check1 = new JCheckBox("男", true);
-		check2 = new JCheckBox("女", false);
+		check1 = new JRadioButton("男", true);
+		check2 = new JRadioButton("女", false);
+    ButtonGroup bg = new ButtonGroup();
+    bg.add(check1);
+    bg.add(check2);
 		birthday = new JLabel("生日");
 		institute = new JLabel("学院");
 		major = new JLabel("专业");
@@ -96,8 +101,6 @@ public class AddUser extends JFrame implements ActionListener {
 		contain.add(chooice);
 		contain.add(submit);
 		submit.addActionListener(this);
-		check1.addActionListener(this);
-		check2.addActionListener(this);
 		add(contain);
 		setVisible(true);
 		enableEvents(AWTEvent.WINDOW_EVENT_MASK);
@@ -114,7 +117,7 @@ public class AddUser extends JFrame implements ActionListener {
 					if ((new CheckInfo().isMember("student", idt.getText(), namet.getText())) == 2) {
 						JOptionPane.showMessageDialog(null, "此学生已经存在！", "提示", JOptionPane.INFORMATION_MESSAGE);
 					} else {
-						file = file + "student.txt";
+						file = dir + "student.txt";
 
 						ArrayList<String> modifiedContent = new ArrayList<String>();
 						// StringBuilder result = new StringBuilder();
@@ -175,7 +178,7 @@ public class AddUser extends JFrame implements ActionListener {
 						JOptionPane.showMessageDialog(null, "此教师已经存在！", "提示", JOptionPane.INFORMATION_MESSAGE);
 					} else {
 
-						file = file + "teacher.txt";
+						file = dir + "teacher.txt";
 
 						ArrayList<String> modifiedContent = new ArrayList<String>();
 						// StringBuilder result = new StringBuilder();
@@ -292,14 +295,7 @@ public class AddUser extends JFrame implements ActionListener {
 					}
 				}
 			}
-		}else if (e.getSource() == check1) {
-      check1.setSelected(true);
-      check2.setSelected(false);
-    }else if (e.getSource() == check2) {
-      check1.setSelected(false);
-      check2.setSelected(true);
-    }
-
+		}
 	}
 
 	public void processWindowEvent(WindowEvent e) {
