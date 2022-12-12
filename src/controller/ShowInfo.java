@@ -78,7 +78,7 @@ public class ShowInfo extends JFrame implements ActionListener {
     int cnt = cur.size();
     for(int i=0;i<cur.size();i++){
       if(cur.get(i).split(" ").length!=7){
-        //System.out.println("Invalid data");
+        System.out.printf("Invalid data [%s]\n",cur.get(i));
         cnt--;
       }
     }

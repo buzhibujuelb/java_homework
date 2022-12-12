@@ -70,7 +70,6 @@ public class GradeEnter extends JFrame implements ActionListener {
 			if (hasThisStu() == 1) {   // 登陆成绩
 				
 				String path = System.getProperty("user.dir")+"/data/grade";
-				// String path = "D://test//grade";
 
 				
 				// 找对应课程成绩文件
@@ -82,7 +81,6 @@ public class GradeEnter extends JFrame implements ActionListener {
 					if (tempList[i].isFile()) {
 						files.add(tempList[i].toString());
 						// 文件名，不包含路径
-						// String fileName = tempList[i].getName();
 					}
 					if (tempList[i].isDirectory()) {
 						// 这里就不递归了，
@@ -170,7 +168,6 @@ public class GradeEnter extends JFrame implements ActionListener {
 		String stuId = stuIdt.getText();
 		
 		String path = System.getProperty("user.dir")+"/data/course_student";
-		// String path = "D://test//course_student";
 
 		List<String> files = new ArrayList<String>(); // 目录下所有文件
 		File file = new File(path);
@@ -250,7 +247,6 @@ public class GradeEnter extends JFrame implements ActionListener {
 	int hasThisCourse(String idd) {
 		
 		String file = System.getProperty("user.dir")+"/data/course.txt";
-		// String file = "D://test//course.txt";
 		try{
             BufferedReader br = new BufferedReader(new FileReader(file));
             String s = null;
