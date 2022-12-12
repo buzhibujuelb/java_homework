@@ -22,97 +22,67 @@ public class CourseView extends JFrame {
 
   public CourseView(String id, int flag) {
     super("课程");
-    setSize(330, 400);
+    setSize(500, 400);
     contain = new JPanel();
     setLocation(600, 400);
     list = new JTextArea();
     list.setEditable(false);
     contain.add(list);
-    list.append("课程编号\t课程名\t学分\t学时\n");
+    list.append("课程编号\t课程名\t学分\t学时\t教师号\t教师名\n");
 
-    String courseid;
-    String coursename;
-    String credit = null;
-    String classhour = null;
+    String courseid, coursename,credit ,classhour, teacherid, teachername;
 
     if(flag == 0){   // 学生查询课程
 
-      // String path = "D://test//course_student";
-      String path = System.getProperty("user.dir")+"/data/course_student";
-      List<String> files = new ArrayList<String>(); // 目录下所有文件
-      File file = new File(path);
-      File[] tempList = file.listFiles();
+      String courseFile = System.getProperty("user.dir")+"/data/course.txt";
+      ArrayList<String> courses = new CheckInfo().getAllInfo(courseFile);
 
-      for (int i = 0; i < tempList.length; i++) {
-        if (tempList[i].isFile()) {
-          files.add(tempList[i].toString());
-          // 文件名，不包含路径
-          // String fileName = tempList[i].getName();
-        }
-        if (tempList[i].isDirectory()) {
-          // 这里就不递归了
-        }
+      for(int i=0;i<courses.size();i++){
+        String cur_course = courses.get(i);
+        String[] course=cur_course.split(" ");
+        String curFile = System.getProperty("user.dir")+"/data/course_student/"+course[1]+".txt";
+        String[] check = new CheckInfo().getByid(curFile, id);
+        if(!check[0].equals(id))continue;
+        //System.out.printf("course[%s] has stu %s\n",course[1], id);
+
+        courseid = course[0];
+        coursename = course[1];
+        credit = course[2];
+        classhour = course[3];
+        teacherid = course[4];
+        teachername = course[5];
+
+        list.append(courseid + "\t");
+        list.append(coursename + "\t");
+        list.append(credit + "\t");
+        list.append(classhour + "\t");
+        list.append(teacherid + "\t");
+        list.append(teachername + "\n");
       }
 
-      try {
-        for (int i = 0; i < files.size(); i++) {
-          BufferedReader br = new BufferedReader(new FileReader(files.get(i)));
-          String s = null;
-          while ((s = br.readLine()) != null) {// 使用readLine方法，一次读一行
-            String[] result = s.split(" ");
-            if (result[2].equals(id)) {      // 学生学号相等时
-              courseid = result[0];
-              coursename = result[1];
-
-
-              String path1 = System.getProperty("user.dir")+"/data/course.txt";
-              BufferedReader br1 = new BufferedReader(
-                  new FileReader(path1));        // 构造一个BufferedReader类来读取文件
-
-              while ((s = br1.readLine()) != null) { // 使用readLine方法，一次读一行
-                String[] result1 = s.split(" ");
-                if (result[0].equals(result1[0])) {
-                  credit = result1[2];
-                  classhour = result1[3];
-                }
-              }
-
-              list.append(courseid + "\t");
-              list.append(coursename + "\t");
-              list.append(credit + "\t");
-              list.append(classhour + "\n");
-
-              br1.close();
-            }
-
-          }
-
-          br.close();
-        }
-      } catch (Exception e) {
-        e.printStackTrace();
-      }
     }else if(flag == 1){      // 教师查询自己教授课程
-      String path = System.getProperty("user.dir")+"/data/course.txt";
-      // String path = "D://test//course.txt";
+      String courseFile = System.getProperty("user.dir")+"/data/course.txt";
       String s = null;
 
       try {
-        BufferedReader br = new BufferedReader(new FileReader(path));
+        BufferedReader br = new BufferedReader(new FileReader(courseFile));
         while((s = br.readLine())!=null){   //使用readLine方法，一次读一行
-          String[] result = s.split(" ");
-          if(result[4].equals(id)){
-            courseid = result[0];
-            coursename = result[1];
-            credit = result[2];
-            classhour = result[3];
+          String[] course = s.split(" ");
+          if(!course[4].equals(id))continue;
 
-            list.append(courseid + "\t");
-            list.append(coursename + "\t");
-            list.append(credit + "\t");
-            list.append(classhour + "\n");
+          courseid = course[0];
+          coursename = course[1];
+          credit = course[2];
+          classhour = course[3];
+          teacherid = course[4];
+          teachername = course[5];
 
-          }
+          list.append(courseid + "\t");
+          list.append(coursename + "\t");
+          list.append(credit + "\t");
+          list.append(classhour + "\t");
+          list.append(teacherid + "\t");
+          list.append(teachername + "\n");
         }
         br.close();
       } catch (IOException e) {
@@ -120,8 +90,6 @@ public class CourseView extends JFrame {
         e.printStackTrace();
       }
     }
-
-
 
     add(contain);
     setVisible(true);
