@@ -8,6 +8,7 @@ C:\Users\bei\Dropbox\java_homework\src\controller\GradeEnter.java
 C:\Users\bei\Dropbox\java_homework\src\controller\GradeInfo.java
 C:\Users\bei\Dropbox\java_homework\src\controller\GradeSort.java
 C:\Users\bei\Dropbox\java_homework\src\controller\Info.java
+C:\Users\bei\Dropbox\java_homework\src\controller\ShowInfo.java
 C:\Users\bei\Dropbox\java_homework\src\model\Administrator.java
 C:\Users\bei\Dropbox\java_homework\src\model\Course.java
 C:\Users\bei\Dropbox\java_homework\src\model\Student.java

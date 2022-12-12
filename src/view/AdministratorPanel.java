@@ -12,13 +12,14 @@ import javax.swing.JPanel;
 import controller.AddUser;
 import controller.DeleteUser;
 import controller.EditInfo;
+import controller.ShowInfo;
 
 @SuppressWarnings("serial")
 public class AdministratorPanel extends JFrame implements ActionListener {
 	/*
 	 * 管理员登陆后操作主界面
 	 */
-	JButton deleteUser, addUser, selfInfo, relogInButton;
+	JButton deleteUser, addUser, selfInfo, relogInButton, showInfo;
 	JPanel contain;
 	String idd;
 
@@ -31,18 +32,22 @@ public class AdministratorPanel extends JFrame implements ActionListener {
 		contain.setLayout(null);
 		add(contain);
 		selfInfo = new JButton("修改信息");
+		showInfo = new JButton("查看所有用户信息");
 		addUser = new JButton("增加用户");
 		deleteUser = new JButton("删除用户");
 		relogInButton = new JButton("重新登陆");
-		selfInfo.setBounds(70, 45, 140, 30);
-		addUser.setBounds(70, 100, 140, 30);
-		deleteUser.setBounds(70, 155, 140, 30);
-		relogInButton.setBounds(70, 210, 140, 30);
+		selfInfo.setBounds(70, 30, 140, 30);
+		showInfo.setBounds(70, 70, 140, 30);
+		addUser.setBounds(70, 110, 140, 30);
+		deleteUser.setBounds(70, 150, 140, 30);
+		relogInButton.setBounds(70, 190, 140, 30);
 		contain.add(selfInfo);
+		contain.add(showInfo);
 		contain.add(addUser);
 		contain.add(deleteUser);
 		contain.add(relogInButton);
 		selfInfo.addActionListener(this);
+		showInfo.addActionListener(this);
 		addUser.addActionListener(this);
 		deleteUser.addActionListener(this);
 		relogInButton.addActionListener(this);
@@ -57,7 +62,9 @@ public class AdministratorPanel extends JFrame implements ActionListener {
 			new DeleteUser();
 		} else if (e.getSource() == selfInfo) {
 			new EditInfo(idd, 3);
-		} else if (e.getSource() == relogInButton) {
+		} else if (e.getSource() == showInfo){
+      new ShowInfo();
+    }else if (e.getSource() == relogInButton) {
 			this.dispose();
 			setVisible(false);
 			new MainFrame();

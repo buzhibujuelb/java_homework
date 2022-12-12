@@ -1,5 +1,6 @@
 package controller;
 
+import java.util.ArrayList;
 import java.io.BufferedReader;
 import java.io.FileReader;
 
@@ -33,6 +34,7 @@ public class CheckInfo {
 
     return 0;
   }
+
   public String[] getByid(String file, String id){
     String[] ret = new String[10];
     BufferedReader br = null;
@@ -58,4 +60,26 @@ public class CheckInfo {
       return ret;
     }
   }
+
+  public ArrayList<String> getAllInfo(String file){
+    ArrayList<String> ret = new ArrayList<String>();
+    BufferedReader br = null;
+    try {
+      br = new BufferedReader(new FileReader(file));// 构造一个BufferedReader类来读取文件
+      String s = null;
+      while ((s = br.readLine()) != null) {// 使用readLine方法，一次读一行
+        ret.add(s);
+      }
+    }catch(Exception e){
+      e.printStackTrace();
+    }finally{
+      try{
+        br.close();
+      }catch(Exception e){
+        e.printStackTrace();
+      }
+      return ret;
+    }
+  }
+
 }
