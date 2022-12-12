@@ -7,6 +7,7 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 
 import javax.swing.JFrame;
+import javax.swing.JTextArea;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
@@ -19,7 +20,7 @@ public class Info extends JFrame {
 	 */
 	private static final long serialVersionUID = 1L;
 	JLabel idLabel, nameLabel, genderLabel, birLabel, insLabel, majorLabel;
-  JLabel idArea, nameArea, genderArea, birArea, insArea, majorArea;
+  JTextArea idArea, nameArea, genderArea, birArea, insArea, majorArea;
   
 	String id, name, pwd, gender, birthday, institute, major;
 	JPanel stuInfoJPanel;
@@ -45,14 +46,10 @@ public class Info extends JFrame {
 		}
 
 		// StringBuilder result = new StringBuilder();
-		try {
-			BufferedReader br = new BufferedReader(new FileReader(file));// 构造一个BufferedReader类来读取文件
-			String s = null;
-
-			while ((s = br.readLine()) != null) {// 使用readLine方法，一次读一行
-
-				String[] result = s.split(" ");
-				if (result[0].equals(id)) {
+				String[] result = new CheckInfo().getByid(file, id);
+				if(!result[0].equals(id)){
+          System.out.println("Id not found");
+        }
 					id = result[0];
 					pwd = result[1];
 					name = result[2];
@@ -61,44 +58,26 @@ public class Info extends JFrame {
 					institute = result[5];
 					major = result[6];
 
-					if (flag == 1) {
-						stu = new Student(id, pwd, name, gender, birthday, institute, major);
-						idLabel = new JLabel("账号:");
-            idArea = new JLabel(stu.getId());
-						nameLabel = new JLabel("姓名:");
-            nameArea = new JLabel(stu.getName());
-						genderLabel = new JLabel("性别:");
-            genderArea = new JLabel(stu.getSex());
-						birLabel = new JLabel("生日:");
-            birArea = new JLabel(stu.getBirthday());
-						insLabel = new JLabel("学院:" );
-            insArea = new JLabel(stu.getInstitute());
-						majorLabel = new JLabel("系别:");
-            majorArea = new JLabel(stu.getMajor());
-					} else {
-						t = new Teacher(id, pwd, name, gender, birthday, institute, major);
-						idLabel = new JLabel("账号:" );
-            idArea = new JLabel(t.getId());
-						nameLabel = new JLabel("姓名:" );
-            nameArea = new JLabel( t.getName());
-						genderLabel = new JLabel("性别:" );
-            genderArea = new JLabel(t.getSex());
-						birLabel = new JLabel("生日:" );
-            birArea = new JLabel(t.getBirthday());
-						insLabel = new JLabel("学院:" );
-            insArea = new JLabel(t.getInstitute());
-						majorLabel = new JLabel("系别:" );
-            majorArea = new JLabel(t.getMajor());
-					}
+          idLabel = new JLabel("账号:");
+          idArea = new JTextArea(id);
+          nameLabel = new JLabel("姓名:");
+          nameArea = new JTextArea(name);
+          genderLabel = new JLabel("性别:");
+          genderArea = new JTextArea(gender);
+          birLabel = new JLabel("生日:");
+          birArea = new JTextArea(birthday);
+          insLabel = new JLabel("学院:" );
+          insArea = new JTextArea(institute);
+          majorLabel = new JLabel("系别:");
+          majorArea = new JTextArea(major);
+          idArea.setEditable(false);
+          nameArea.setEditable(false);
+          genderArea.setEditable(false);
+          birArea.setEditable(false);
+          insArea.setEditable(false);
+          majorArea.setEditable(false);
 
-				}
 
-			}
-
-			br.close();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
 
 
 		idLabel.setBounds(42, 20, 75, 35);
