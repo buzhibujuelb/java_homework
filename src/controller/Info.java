@@ -19,10 +19,10 @@ public class Info extends JFrame {
 	 * 用户查询个人信息
 	 */
 	private static final long serialVersionUID = 1L;
-	JLabel idLabel, nameLabel, genderLabel, birLabel, insLabel, majorLabel;
-  JTextArea idArea, nameArea, genderArea, birArea, insArea, majorArea;
+	JLabel idLabel, nameLabel, sexLabel, birLabel, insLabel, majorLabel;
+  JTextArea idArea, nameArea, sexArea, birArea, insArea, majorArea;
   
-	String id, name, pwd, gender, birthday, institute, major;
+	String id, name, pwd, sex, birthday, institute, major;
 	JPanel stuInfoJPanel;
 
 	Student stu;
@@ -53,7 +53,7 @@ public class Info extends JFrame {
 					id = result[0];
 					pwd = result[1];
 					name = result[2];
-					gender = result[3];
+					sex = result[3];
 					birthday = result[4];
 					institute = result[5];
 					major = result[6];
@@ -62,17 +62,17 @@ public class Info extends JFrame {
           idArea = new JTextArea(id);
           nameLabel = new JLabel("姓名:");
           nameArea = new JTextArea(name);
-          genderLabel = new JLabel("性别:");
-          genderArea = new JTextArea(gender);
+          sexLabel = new JLabel("性别:");
+          sexArea = new JTextArea(sex);
           birLabel = new JLabel("生日:");
           birArea = new JTextArea(birthday);
           insLabel = new JLabel("学院:" );
           insArea = new JTextArea(institute);
-          majorLabel = new JLabel("系别:");
+          majorLabel = new JLabel("专业:");
           majorArea = new JTextArea(major);
           idArea.setEditable(false);
           nameArea.setEditable(false);
-          genderArea.setEditable(false);
+          sexArea.setEditable(false);
           birArea.setEditable(false);
           insArea.setEditable(false);
           majorArea.setEditable(false);
@@ -84,8 +84,8 @@ public class Info extends JFrame {
 		idArea.setBounds(80, 20, 150, 35);
 		nameLabel.setBounds(42, 60, 75, 35);
 		nameArea.setBounds(80, 60, 150, 35);
-		genderLabel.setBounds(42, 100, 75, 35);
-		genderArea.setBounds(80, 100, 150, 35);
+		sexLabel.setBounds(42, 100, 75, 35);
+		sexArea.setBounds(80, 100, 150, 35);
 		birLabel.setBounds(40, 145, 75, 35);
 		birArea.setBounds(80, 145, 150, 35);
 		insLabel.setBounds(40, 190, 75, 35);
@@ -98,8 +98,8 @@ public class Info extends JFrame {
 		stuInfoJPanel.add(idArea);
 		stuInfoJPanel.add(nameLabel);
 		stuInfoJPanel.add(nameArea);
-		stuInfoJPanel.add(genderLabel);
-		stuInfoJPanel.add(genderArea);
+		stuInfoJPanel.add(sexLabel);
+		stuInfoJPanel.add(sexArea);
 		stuInfoJPanel.add(birLabel);
 		stuInfoJPanel.add(birArea);
 		stuInfoJPanel.add(insLabel);

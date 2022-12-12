@@ -38,7 +38,7 @@ public class MainFrame extends JFrame implements ActionListener {
 		setSize(300, 340);
 		contain = new JPanel();
 		contain.setLayout(null);
-		idLabel = new JLabel("ID号");
+		idLabel = new JLabel("账号");
 		passwdLabel = new JLabel("密码");
 		idTextField = new JTextField();
 		passwdTextField = new JPasswordField();
