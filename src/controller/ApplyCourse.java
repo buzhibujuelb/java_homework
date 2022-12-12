@@ -49,9 +49,9 @@ public class ApplyCourse extends JFrame implements ActionListener{
 
 
     list.setBounds(20, 20, 460, 300);
-    info.setBounds(40, 320, 120, 30);
-    inputField.setBounds(180, 320, 80,30);
-    submit.setBounds(280, 320, 80,30);
+    info.setBounds(40, 330, 120, 30);
+    inputField.setBounds(180, 330, 80,30);
+    submit.setBounds(280, 330, 80,30);
 
     contain.add(list);
     contain.add(info);
