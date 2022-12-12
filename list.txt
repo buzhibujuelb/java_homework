@@ -1,5 +1,6 @@
 C:\Users\bei\Dropbox\java_homework\src\controller\AddCourse.java
 C:\Users\bei\Dropbox\java_homework\src\controller\AddUser.java
+C:\Users\bei\Dropbox\java_homework\src\controller\ApplyCourse.java
 C:\Users\bei\Dropbox\java_homework\src\controller\CheckInfo.java
 C:\Users\bei\Dropbox\java_homework\src\controller\CourseView.java
 C:\Users\bei\Dropbox\java_homework\src\controller\DeleteUser.java
