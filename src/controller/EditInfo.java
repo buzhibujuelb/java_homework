@@ -46,7 +46,7 @@ public class EditInfo extends JFrame implements ActionListener {
     birth = new JLabel("生日");
     inst = new JLabel("学院");
     major = new JLabel("专业");
-    pass1 = new JLabel("新密码\n（留空不修改）");
+    pass1 = new JLabel("<html><p style=\"text-align:center\">新密码<br>（可留空）</p></html>" );
     pass2 = new JLabel("确认密码");
     submit = new JButton("提交");
     check1 = new JRadioButton("男", true);
@@ -100,7 +100,7 @@ public class EditInfo extends JFrame implements ActionListener {
     instt.setBounds(80, 145, 150, 35);
     major.setBounds(40, 190, 75, 35);
     majort.setBounds(80, 190, 150, 35);
-    pass1.setBounds(36, 235, 75, 35);
+    pass1.setBounds(20, 225, 75, 50);
     pass1t.setBounds(80, 235, 150, 35);
     pass2.setBounds(28, 280, 75, 35);
     pass2t.setBounds(80, 280, 150, 35);

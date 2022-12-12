@@ -81,17 +81,17 @@ public class Info extends JFrame {
 
 
 		idLabel.setBounds(42, 20, 75, 35);
-		idArea.setBounds(80, 20, 150, 35);
+		idArea.setBounds(80, 25, 150, 25);
 		nameLabel.setBounds(42, 60, 75, 35);
-		nameArea.setBounds(80, 60, 150, 35);
+		nameArea.setBounds(80, 65, 150, 25);
 		sexLabel.setBounds(42, 100, 75, 35);
-		sexArea.setBounds(80, 100, 150, 35);
+		sexArea.setBounds(80, 105, 150, 25);
 		birLabel.setBounds(40, 145, 75, 35);
-		birArea.setBounds(80, 145, 150, 35);
+		birArea.setBounds(80, 150, 150, 25);
 		insLabel.setBounds(40, 190, 75, 35);
-		insArea.setBounds(80, 190, 150, 35);
+		insArea.setBounds(80, 195, 150, 25);
 		majorLabel.setBounds(36, 235, 75, 35);
-		majorArea.setBounds(80, 235, 150, 35);
+		majorArea.setBounds(80, 240, 150, 25);
 
 
 		stuInfoJPanel.add(idLabel);
