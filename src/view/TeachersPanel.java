@@ -82,7 +82,7 @@ public class TeachersPanel extends JFrame implements ActionListener {
 			new EditInfo(idd, 1);
 		}
 		if (e.getSource() == courseView) {
-			new AddCourse();
+			new AddCourse(idd);
 		}
 		if (e.getSource() == sortGrade) {
 			new SortGradeFrame();

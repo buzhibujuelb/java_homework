@@ -32,7 +32,7 @@ public class AddCourse extends JFrame implements ActionListener {
 	JLabel id, name, gredit, classH, teacherId, teacherName;
 	JTextField idt, namet, greditt, classHt, teacherIdt, teacherNamet;
 
-	public AddCourse() {
+	public AddCourse(String myid) {
 		super("增加课程");
 		setSize(400, 400);
 		setLocation(600, 400);
@@ -43,8 +43,8 @@ public class AddCourse extends JFrame implements ActionListener {
 		gredit = new JLabel("学分");
 		classH = new JLabel("学时");
 
-		teacherId = new JLabel("教师");
-		teacherName = new JLabel("教师号");
+		teacherId = new JLabel("教师号");
+    teacherName = new JLabel("教师姓名");
 
 		submit = new JButton("提交");
 		idt = new JTextField();
@@ -63,13 +63,24 @@ public class AddCourse extends JFrame implements ActionListener {
 		classH.setBounds(45, 200, 75, 35);
 		classHt.setBounds(80, 200, 150, 35);
 
-		teacherId.setBounds(45, 245, 75, 35);
-		teacherIdt.setBounds(85, 245, 150, 35);
+		teacherId.setBounds(38, 245, 75, 35);
+		teacherIdt.setBounds(80, 245, 150, 35);
+		teacherName.setBounds(25, 290, 75, 35);
+		teacherNamet.setBounds(80, 290, 150, 35);
 
-		teacherName.setBounds(45, 280, 75, 35);
-		teacherNamet.setBounds(80, 280, 75, 35);
+    // 只能给自己开课
 
-		submit.setBounds(102, 320, 70, 30);
+    String file = System.getProperty("user.dir") + "/data/teacher.txt";
+    String[] result= new CheckInfo().getByid(file, myid);
+
+    teacherIdt.setText(myid);
+    teacherNamet.setText(result[2]);
+
+    teacherIdt.setEditable(false);
+    teacherNamet.setEditable(false);
+
+		submit.setBounds(102, 330, 70, 25);
+
 		contain.add(id);
 		contain.add(idt);
 		contain.add(name);
