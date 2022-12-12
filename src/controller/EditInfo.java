@@ -74,21 +74,23 @@ public class EditInfo extends JFrame implements ActionListener {
     }
 
     String[] result = new CheckInfo().getByid(file, id);
-    if(result[0].equals(id)){
-      namet.setText(result[2]);
-
-      if(result[3].equals("male")){
-        check1.setSelected(true);
-        check2.setSelected(false);
-      }else{
-        check1.setSelected(false);
-        check2.setSelected(true);
-      }
-
-      birtht.setText(result[4]);
-      instt.setText(result[5]);
-      majort.setText(result[6]);
+    if(!result[0].equals(id)){
+      System.out.println("文件缺失");
+      return;
     }
+    namet.setText(result[2]);
+
+    if(result[3].equals("male")){
+      check1.setSelected(true);
+      check2.setSelected(false);
+    }else{
+      check1.setSelected(false);
+      check2.setSelected(true);
+    }
+
+    birtht.setText(result[4]);
+    instt.setText(result[5]);
+    majort.setText(result[6]);
 
     name.setBounds(42, 20, 75, 35);
     namet.setBounds(80, 20, 150, 35);
@@ -138,16 +140,26 @@ public class EditInfo extends JFrame implements ActionListener {
         JOptionPane.showMessageDialog(null, "新密码与确认密码不同！", "提示",
             JOptionPane.INFORMATION_MESSAGE);
       } else if (!pass1t.getText().equals("") &&pass1t.getText().length() < 6) {
-        JOptionPane.showMessageDialog(null, "密码长度至少为6位！", "提示",
-            JOptionPane.INFORMATION_MESSAGE);
-      } else {
+        JOptionPane.showMessageDialog(null, "密码长度至少为6位！", "提示", JOptionPane.INFORMATION_MESSAGE);
+      } else if(instt.getText().contains(" ")){
+        JOptionPane.showMessageDialog(null, "学院名含非法字符", "提示", JOptionPane.INFORMATION_MESSAGE);
+      } else if(instt.getText().contains(" ")){
+        JOptionPane.showMessageDialog(null, "学院名含非法字符", "提示", JOptionPane.INFORMATION_MESSAGE);
+      } else if(namet.getText().contains(" ")){
+        JOptionPane.showMessageDialog(null, "姓名含非法字符", "提示", JOptionPane.INFORMATION_MESSAGE);
+      } else if(birtht.getText().contains(" ")){
+        JOptionPane.showMessageDialog(null, "生日含非法字符", "提示", JOptionPane.INFORMATION_MESSAGE);
+      } else if(majort.getText().contains(" ")){
+        JOptionPane.showMessageDialog(null, "专业名含非法字符", "提示", JOptionPane.INFORMATION_MESSAGE);
+      } else if(pass1t.getText().contains(" ")){
+        JOptionPane.showMessageDialog(null, "密码含非法字符", "提示", JOptionPane.INFORMATION_MESSAGE);
+      } else{
         String m;
         if (check1.isSelected()) {
           m = "male";
         } else {
           m = "female";
         }
-
 
         ArrayList<String> modifiedContent = new ArrayList<String>();
         String file = new String();
@@ -213,7 +225,6 @@ public class EditInfo extends JFrame implements ActionListener {
           // TODO Auto-generated catch block
           e1.printStackTrace();
         }
-
 
         JOptionPane.showMessageDialog(null, "修改成功！", "提示",
             JOptionPane.INFORMATION_MESSAGE);

@@ -47,7 +47,7 @@ public class ApplyCourse extends JFrame implements ActionListener{
     inputField = new JTextField();
     info = new JLabel("请输入想报名的课程");
 
-    
+
     list.setBounds(20, 20, 460, 300);
     info.setBounds(40, 320, 120, 30);
     inputField.setBounds(180, 320, 80,30);
@@ -119,16 +119,20 @@ public class ApplyCourse extends JFrame implements ActionListener{
           JOptionPane.YES_NO_OPTION);
       if (opt == JOptionPane.YES_OPTION) {
         try{
-            FileWriter fw = new FileWriter(curFile, true);
-            BufferedWriter bw = new BufferedWriter(fw);
-            bw.write(id);
-            bw.newLine();
-            bw.close();
-            fw.close();
+          FileWriter fw = new FileWriter(curFile, true);
+          BufferedWriter bw = new BufferedWriter(fw);
+          bw.write(id);
+          bw.newLine();
+          bw.close();
+          fw.close();
         }catch(IOException e1){
-            e1.printStackTrace();
+          e1.printStackTrace();
         }
+        JOptionPane.showMessageDialog(null, "报名成功!", "提示",
+            JOptionPane.INFORMATION_MESSAGE);
 
+        this.dispose();
+        setVisible(false);
       }
 
     }
