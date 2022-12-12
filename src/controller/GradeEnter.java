@@ -28,7 +28,7 @@ public class GradeEnter extends JFrame implements ActionListener {
 	String idd;  // 教师号
 	JPanel contain;
 	JLabel id;
-	JTextField idt, stuIdt, stuGradet, stuNamet;
+	JTextField idt, stuIdt, stuGradet;
 	
 	String targetFile;
 	
@@ -59,7 +59,7 @@ public class GradeEnter extends JFrame implements ActionListener {
 
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource() == submit) {
-			if (hasThisCourse(idt.getText()) == 1) {
+			if (hasThisCourse(idt.getText()) ) {
 				enter();   // 进入成绩输入界面
 				
 			} else {
@@ -67,92 +67,36 @@ public class GradeEnter extends JFrame implements ActionListener {
 			}
 		} else if (e.getSource() == bn) {
 			
-			if (hasThisStu() == 1) {   // 登陆成绩
-				
-				String path = System.getProperty("user.dir")+"/data/grade";
+			if (hasThisStu(idt.getText(),stuIdt.getText()) ) {   // 登陆成绩
 
-				
-				// 找对应课程成绩文件
-				List<String> files = new ArrayList<String>(); // 课程成绩目录下所有科目成绩文件
-				File file = new File(path);
-				File[] tempList = file.listFiles();
+        String stuid = stuIdt.getText();
+        double score = Double.valueOf(stuGradet.getText());
+        if(score<0 || score>100){
+				  JOptionPane.showMessageDialog(null, "成绩超出范围", "提示", JOptionPane.INFORMATION_MESSAGE);
+          return;
+        }
 
-				for (int i = 0; i < tempList.length; i++) {
-					if (tempList[i].isFile()) {
-						files.add(tempList[i].toString());
-						// 文件名，不包含路径
-					}
-					if (tempList[i].isDirectory()) {
-						// 这里就不递归了，
-					}
-				}
+				String path = System.getProperty("user.dir")+"/data/course.txt";
+        String[] check = new CheckInfo().getByid(path, idd);
 
-				try {
-					for (int i = 0; i < files.size(); i++) {  // 遍历所有文件
-						BufferedReader br = new BufferedReader(new FileReader(files.get(i)));
-						String s = null;
-						String[] result = null;
-						while ((s = br.readLine()) != null) {// 使用readLine方法，对一个文件一次读一行
-							result = s.split(" ");
-							if (result[0].equals(idt.getText())){  // 开始改写成绩文件
-								targetFile = files.get(i);
-								
-								// 将原来的内容先复制
-								String s1 = "";
-								for (int j = 0; j < result.length - 1; j++) {
-									s1 = s1 + result[j];
-									s1 = s1 + " ";
-								}
-								s1 = s1 + result[result.length - 1];
-								
-								modifiedContent.add(s1);
-							
-							}
-						} // 读完一个成绩文件
-						
-						if (result[0].equals(idt.getText())){
-							String gradeInfo = idt.getText();
-							gradeInfo = gradeInfo + " ";
-							gradeInfo = gradeInfo + result[1];
-							gradeInfo = gradeInfo + " ";
-							gradeInfo = gradeInfo + result[2];
-							gradeInfo = gradeInfo + " ";
-							gradeInfo = gradeInfo + result[3];
-							gradeInfo = gradeInfo + " ";
-							gradeInfo = gradeInfo + stuIdt.getText();
-							gradeInfo = gradeInfo + " ";
-							gradeInfo = gradeInfo + stuNamet.getText();
-							gradeInfo = gradeInfo + " ";
-							gradeInfo = gradeInfo + stuGradet.getText();
-							modifiedContent.add(gradeInfo);
-						}
-						
-						br.close();
-					}
-				} catch (Exception ee) {
-					ee.printStackTrace();
-				}
-				
-				
-				
-				
-				try {
-					FileWriter fw = new FileWriter(targetFile);
-					BufferedWriter bw = new BufferedWriter(fw);
+        String curFile =  System.getProperty("user.dir")+"/data/grade/"+check[1]+".txt";
+        String[] pre_score = new CheckInfo().getByid(curFile, stuid);
+        if(pre_score[0].equals(stuid)){
+				  JOptionPane.showMessageDialog(null, "该学生已有本科目成绩！", "提示", JOptionPane.INFORMATION_MESSAGE);
+          return;
+        }
 
-					for (int i = 0; i < modifiedContent.size(); i++) {
-						bw.write(modifiedContent.get(i));
-						bw.newLine();
-					}
+        try{
+          FileWriter fw = new FileWriter(curFile, true);
+          BufferedWriter bw = new BufferedWriter(fw);
+          bw.write(stuid+" "+ score);
+          bw.newLine();
+          bw.close();
+          fw.close();
+        }catch(IOException e1){
+          e1.printStackTrace();
+        }
 
-					bw.close();
-					fw.close();
-				} catch (IOException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				}
-				
-				
 				JOptionPane.showMessageDialog(null, "成绩登录成功！", "提示", JOptionPane.INFORMATION_MESSAGE);
 			
 			} else {
@@ -162,47 +106,6 @@ public class GradeEnter extends JFrame implements ActionListener {
 		}
 	}
 
-	int hasThisStu() {
-		
-		@SuppressWarnings("unused")
-		String stuId = stuIdt.getText();
-		
-		String path = System.getProperty("user.dir")+"/data/course_student";
-
-		List<String> files = new ArrayList<String>(); // 目录下所有文件
-		File file = new File(path);
-		File[] tempList = file.listFiles();
-
-		for (int i = 0; i < tempList.length; i++) {
-			if (tempList[i].isFile()) {
-				files.add(tempList[i].toString());
-				// 文件名，不包含路径
-				// String fileName = tempList[i].getName();
-			}
-			if (tempList[i].isDirectory()) {
-				// 这里就不递归了，
-			}
-		}
-
-		try {
-			for (int i = 0; i < files.size(); i++) {
-				BufferedReader br = new BufferedReader(new FileReader(
-						files.get(i)));
-				String s = null;
-				while ((s = br.readLine()) != null) {// 使用readLine方法，一次读一行
-					String[] result = s.split(" ");
-					if (result[0].equals(idt.getText()) && result[2].equals(stuIdt.getText())){
-						return 1;
-					}
-				}
-				br.close();
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		
-		return 0;
-	}
 
 	void enter() {
 		JFrame fm = new JFrame("登录成绩");
@@ -213,11 +116,9 @@ public class GradeEnter extends JFrame implements ActionListener {
 		bn = new JButton("提交");
 		JLabel stuId = new JLabel("学号");
 		JLabel stuGrade = new JLabel("成绩");
-		JLabel stuName = new JLabel("姓名");
 		
 		stuIdt = new JTextField();
 		stuGradet = new JTextField();
-		stuNamet = new JTextField();
 		
 		stuId.setBounds(38, 50, 75, 35);
 		stuIdt.setBounds(80, 50, 150, 35);
@@ -225,16 +126,12 @@ public class GradeEnter extends JFrame implements ActionListener {
 		stuGrade.setBounds(38, 110, 75, 35);
 		stuGradet.setBounds(80, 110, 150, 35);
 		
-		stuName.setBounds(38, 170, 75, 35);
-		stuNamet.setBounds(80, 170, 150, 35);
 		
 		bn.setBounds(170, 220, 70, 30);
 		contain.add(stuId);
 		contain.add(stuIdt);
 		contain.add(stuGrade);
 		contain.add(stuGradet);
-		contain.add(stuName);
-		contain.add(stuNamet);
 		contain.add(bn);
 		fm.add(contain);
 		bn.addActionListener(this);
@@ -244,7 +141,18 @@ public class GradeEnter extends JFrame implements ActionListener {
 		
 	}
 
-	int hasThisCourse(String idd) {
+  boolean hasThisStu(String courseid, String stuid){
+    String file = System.getProperty("user.dir") + "/data/course.txt";
+    String[] course = new CheckInfo().getByid(file,courseid);
+    ArrayList<String> students = new CheckInfo().getAllInfo(System.getProperty("user.dir") + "/data/course_student/"+course[1]+".txt");
+    for(int i=0;i<students.size();i++){
+      if(students.get(i).equals(stuid))
+        return true;
+    }
+    return false;
+  }
+
+	boolean hasThisCourse(String idd) {
 		
 		String file = System.getProperty("user.dir")+"/data/course.txt";
 		try{
@@ -252,15 +160,15 @@ public class GradeEnter extends JFrame implements ActionListener {
             String s = null;
             while((s = br.readLine())!=null){//使用readLine方法，一次读一行
             	String[] result = s.split(" ");
-            	if(result[0].equals(idd)){
-            		return 1;
+            	if(result[4].equals(idd)){
+            		return true;
             	}
             }
             br.close();    
         }catch(Exception e){
             e.printStackTrace();
         }
-		return 0;
+		return false;
 	}
 
 	public void processWindowEvent(WindowEvent e) {

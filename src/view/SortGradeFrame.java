@@ -36,11 +36,11 @@ public class SortGradeFrame extends JFrame implements ActionListener{
 		idt = new JTextField();
 		
 		pass = new JLabel("及格");
-		passt = new JTextField();
+		passt = new JTextField("60");
 		good = new JLabel("良好");
-		goodt = new JTextField();
+		goodt = new JTextField("70");
 		excellent = new JLabel("优秀");
-		excellentt = new JTextField();
+		excellentt = new JTextField("85");
 		
 		submit = new JButton("提交");
 		id.setBounds(38, 50, 75, 35);
@@ -69,10 +69,6 @@ public class SortGradeFrame extends JFrame implements ActionListener{
 		setVisible(true);
 		enableEvents(AWTEvent.WINDOW_EVENT_MASK);
 		
-		idt.setText("");
-		passt.setText("");
-		goodt.setText("");
-		excellentt.setText("");
 	}
 
 	@Override
@@ -151,12 +147,7 @@ public class SortGradeFrame extends JFrame implements ActionListener{
 		goodt.setText(Integer.toString(this.result[2])+"人");
 		excellentt.setText(Integer.toString(this.result[3])+"人");
 		
-		
 		fm.setVisible(true);
 		
 	}
-	
-	
-	
-	
 }

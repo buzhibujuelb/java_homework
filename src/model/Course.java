@@ -6,6 +6,8 @@ import java.io.FileReader;
 import java.util.ArrayList;
 import java.util.List;
 
+import controller.CheckInfo;
+
 public class Course {
 
 	private String courseId;
@@ -137,7 +139,6 @@ public class Course {
 
 	public int hasCourse() {
 		String file = System.getProperty("user.dir") + "/data/course.txt";
-		// String file = "D://test//course.txt";
 		try {
 			BufferedReader br = new BufferedReader(new FileReader(file));
 			String s = null;
@@ -158,43 +159,10 @@ public class Course {
 
 		int failCount = 0, passCount = 0, goodCount = 0, excellentCount = 0;
 
-		String path = System.getProperty("user.dir") + "/data/grade";
-
-		List<String> files = new ArrayList<String>(); // 目录下所有文件
-		File file = new File(path);
-		File[] tempList = file.listFiles();
-
-		for (int i = 0; i < tempList.length; i++) {
-			if (tempList[i].isFile()) {
-				files.add(tempList[i].toString());
-				// 文件名，不包含路径
-				// String fileName = tempList[i].getName();
-			}
-			if (tempList[i].isDirectory()) {
-
-			}
-		}
+		String path = System.getProperty("user.dir") + "/data/grade/";
 
 		BufferedReader br = null;
-		String targetFile = null;
-
-		try {
-			for (int i = 0; i < files.size(); i++) {
-				br = new BufferedReader(new FileReader(files.get(i)));
-				String s = null;
-				if ((s = br.readLine()) != null) {
-					String[] result = s.split(" ");
-					if (result[0].equals(this.courseId)) {
-						targetFile = files.get(i);
-						break;
-					}
-				}
-
-				br.close();
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+		String targetFile = path+ new CheckInfo().getByid(System.getProperty("user.dir")+"/data/course.txt", courseId)[1]+".txt";
 
 		try {
 
@@ -202,11 +170,11 @@ public class Course {
 			String s = null;
 			while ((s = br.readLine()) != null) {
 				String[] result = s.split(" ");
-				if (Float.parseFloat(result[6]) < this.pass) {
+				if (Float.parseFloat(result[1]) < this.pass) {
 					failCount += 1;
-				} else if (Float.parseFloat(result[6]) < this.good) {
+				} else if (Float.parseFloat(result[1]) < this.good) {
 					passCount += 1;
-				} else if (Float.parseFloat(result[6]) < this.excellent) {
+				} else if (Float.parseFloat(result[1]) < this.excellent) {
 					goodCount += 1;
 				} else {
 					excellentCount += 1;
